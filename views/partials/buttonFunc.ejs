@@ -1,0 +1,30 @@
+<script>
+  window.onload = () => {
+    userDb
+      .collection("user")
+      .limit(1)
+      .get()
+      .then((user) => {
+        if (user.length <= 0) {
+          document.getElementById("login_btn").classList.remove("hidden");
+          document.getElementById("login_btn").classList.add("flex");
+          document.getElementById("logout_btn").classList.remove("flex");
+          document.getElementById("logout_btn").classList.add("hidden");
+        } else if (user.length > 0) {
+          document.getElementById("login_btn").classList.remove("flex");
+          document.getElementById("login_btn").classList.add("hidden");
+          document.getElementById("logout_btn").classList.remove("hidden");
+          document.getElementById("logout_btn").classList.add("flex");
+        }
+      });
+
+    document.getElementById("logout_btn").addEventListener("click", () => {
+      userDb.delete();
+      window.location.reload();
+      document.getElementById("login_btn").classList.remove("hidden");
+      document.getElementById("login_btn").classList.add("flex");
+      document.getElementById("logout_btn").classList.remove("flex");
+      document.getElementById("logout_btn").classList.add("hidden");
+    });
+  };
+</script>

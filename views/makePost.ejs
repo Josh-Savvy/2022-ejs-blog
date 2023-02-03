@@ -1,0 +1,57 @@
+<%- include("./partials/header") %> <%-include("./partials/authUser.ejs") %>
+
+<h1 class="md:text-2xl text-xl font-semibold md:ml-5 md:text-start text-center"
+  >Create a post</h1
+>
+<%- include("./partials/error.ejs") %>
+
+<div class="flex justify-center items-center">
+  <% if (typeof categories !== "undefined") {%>
+  <div>
+    <form action="/post" method="POST" class="mt-10">
+      <div class="w-full mb-3">
+        <label class="text-gray-600">Title:</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          class="w-full border-2 border-gray-300 rounded"
+        />
+      </div>
+      <div class="w-full mb-3">
+        <label class="text-gray-600">Caption:</label>
+        <textarea
+          name="caption"
+          id="caption"
+          class="rounded w-full h-32 resize-none placeholder:text-sm duration-300 px-4 py-3 border-2 border-gray-300 rounded-sm outline-none focus:border-blue-400"
+          placeholder="Start typing..."
+        ></textarea>
+      </div>
+      <div class="w-full mb-3">
+        <label class="text-gray-600">Category:</label>
+        <select
+          class="rounded outline-none focus:ring-0 border-2 border-gray-300 p-1 px-4"
+          name="category"
+          id="category"
+        >
+          <option value="">Select post category</option>
+          <%categories?.forEach((cat)=>{ %>
+          <option value="<%=cat %>" class="outline-none focus:ring-0"
+            ><%=cat %>
+          </option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="flex justify-center text-white mt-10">
+        <button
+          type="submit"
+          class="bg-gray-400 hover:bg-gray-300 p-2 px-20 rounded"
+          >Post</button
+        >
+      </div>
+    </form>
+  </div>
+  <%} %>
+</div>
+
+<%- include("./partials/footer") %>

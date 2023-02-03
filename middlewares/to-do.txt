@@ -1,0 +1,4 @@
+TO-DO
+
+1. create a slug for each post
+2. before creating any post, check new post slug agaist allposts slug

@@ -1,0 +1,22 @@
+<%- include("./partials/scripts.ejs") %>
+
+<div style="font-size: 5rem; text-align: center">
+  <% if (typeof responseMessage !== "undefined") { %>
+  <div class=""><%= responseMessage%> </div>
+  <% } %>
+  <div class="">Redirecting...</div>
+</div>
+
+<script>
+  window.onload = function () {
+    if ("<%=userToken%>" && "<%=name%>") {
+      userDb.collection("user").add({
+        name: "<%=name%>",
+        userToken: "<%=userToken%>",
+      });
+      setTimeout(() => {
+        window.location.replace("/");
+      }, 700);
+    }
+  };
+</script>

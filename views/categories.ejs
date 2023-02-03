@@ -1,0 +1,17 @@
+<%- include("./partials/header.ejs") %>
+
+<h1 class="text-3xl font-bold">Categories</h1>
+
+<%-include("./partials/error.ejs") %>
+
+<div class="grid md:flex gap-5 md:mt-5 mt-10">
+  <% if (typeof data !== "undefined") { %> <%data?.forEach(function(category){
+  %>
+  <a
+    class="bg-white p-5 px-10 font-bold rounded"
+    href="/posts/categories/<%=category.toLowerCase()%>"
+    ><%=category%></a
+  >
+  <% }) %> <% } %>
+</div>
+<%- include("./partials/footer.ejs") %>

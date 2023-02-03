@@ -1,0 +1,25 @@
+<script>
+  userDb
+    .collection("user")
+    .limit(1)
+    .get()
+    .then((user) => {
+      if (user.length <= 0) {
+        console.log("No user found");
+        if (window.location.pathname !== "/auth/login")
+          window.location.replace("/auth/login");
+      } else {
+        if (window.location.pathname == "/auth/login") {
+          window.location.replace("/");
+        }
+        axios.post(
+          "/auth/isloggedin",
+          { userToken: user[0].userToken },
+          (err, response) => {
+            if (err) console.log("checkUser", err);
+            console.log("checkUser", response);
+          }
+        );
+      }
+    });
+</script>
